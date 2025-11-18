@@ -1,6 +1,4 @@
 #include <stdio.h>
-
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -10,29 +8,13 @@
 #include "driver/gpio.h"
 #include <TFT_eSPI.h>
 #include <Arduino.h>
-#include "driver/gpio.h"
 #include "driver/i2s.h"
 #include "driver/adc.h"
-#include "esp_timer.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
-#include <Arduino.h>
 #include "esp_sntp.h"
 #include "rom/gpio.h"
-// #include "driver/gptimer.h
 #include "esp32-hal-timer.h"
 #include "esp_timer.h"
 #include "esp32-hal-gpio.h"
-
-// #include <-->
-
-
-
 
 #define LDR_PIN1 GPIO_NUM_13 // for ADC1_CH0
 #define LDR_PIN2 GPIO_NUM_14// for ADC1_CH2 // i think we can do this
@@ -51,13 +33,15 @@
 #define ECHO_PIN_L2 GPIO_NUM_11
 #define ECHO_PIN_R2 GPIO_NUM_12
 
+#define BUFFER1 2;
+#define BUFFER2 2;
+#define BUFFER3 2;
 
 // constant values, can be changed 
 #define VERY_DIM 1.75
 #define BRIGHT 1.2
 #define LDR_BUFFER 0.05 
 
-#define US_BUFFER 2 // buffer for ultrasonic 
 
 #define ESP_INTR_FLAG_DEFAULT 0
 
@@ -66,15 +50,3 @@
 
 
 
-void ldr();
-void tilt();
-void ultrasonic();
-void init();
-
-
-void ldr_init();
-void tilt_init();
-void ultrasonic_init();
-void ultrasonic_trig_isr();
-void ultrasonic_echo_isr();
-void timer_init();
