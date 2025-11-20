@@ -1,5 +1,6 @@
 #include <TFT_eSPI.h>
 #include <Arduino.h>
+#include "sensors.hpp"
 TFT_eSPI tft;
 
 // ---------- BUTTON PINS (safe) ----------
@@ -11,6 +12,13 @@ const int BTN4 = 21;
 const int LED_F1 = 25;   // pick any safe GPIOs
 const int LED_F2 = 32;    // (avoid 1/3 UART, 12/13/14/15 boot/SPI)
 const int LED_F3 = 33;
+
+// ---------- TILT SENSOR PINS ----------
+// #define TILT_PIN_L GPIO_NUM_1
+// #define TILT_PIN_R GPIO_NUM_2
+// #define TILT_PIN_F GPIO_NUM_3
+// #define TILT_PIN_B GPIO_NUM_4
+
 
 
 // ---------- ADC ----------
@@ -279,6 +287,10 @@ void setup(){
 // ---------- Loop ----------
 void loop(){
   // consume edges atomically
+
+
+  tilt_init();
+  
   uint32_t edges;
   portENTER_CRITICAL(&mux);
   edges = buttonEdgeFlags; buttonEdgeFlags = 0;

@@ -20,10 +20,15 @@
 #define LDR_PIN2 GPIO_NUM_14// for ADC1_CH2 // i think we can do this
 
 // GPIO output/input 
-#define TILT_PIN_L GPIO_NUM_1
-#define TILT_PIN_R GPIO_NUM_2
-#define TILT_PIN_F GPIO_NUM_3
-#define TILT_PIN_B GPIO_NUM_4
+// #define TILT_PIN_L GPIO_NUM_1
+// #define TILT_PIN_R GPIO_NUM_2
+// #define TILT_PIN_F GPIO_NUM_3
+// #define TILT_PIN_B GPIO_NUM_4
+const int TILT_PIN_L = 39;
+const int TILT_PIN_R = 34;
+const int TILT_PIN_F = 26;
+const int TILT_PIN_B = 27;
+
 #define TRIG_PIN_L1 GPIO_NUM_5
 #define TRIG_PIN_R1 GPIO_NUM_6
 #define ECHO_PIN_L1 GPIO_NUM_7
@@ -48,5 +53,13 @@
 #define ULTRASONIC_OUTPUT_MASK ((1 << TRIG_PIN_L1) | (1 << TRIG_PIN_L2) | (1 << TRIG_PIN_R1) | (1 << TRIG_PIN_R2))
 #define ULTRASONIC_INPUT_MASK ((1 << ECHO_PIN_L1) | (1 << ECHO_PIN_L2) | (1 << ECHO_PIN_R1) | (1 << ECHO_PIN_R2))
 
-
+int ldr(int);
+int ultrasonic(int, int);
+void ultrasonic_ldr_isr();
+void ultrasonic_init();
+void ldr_init();
+void tilt_init();
+void timer0_init();
+void sensors_loop();
+  
 

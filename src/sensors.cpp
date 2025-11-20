@@ -12,14 +12,7 @@ int tilt_state = 0;
 hw_timer_t* timer0 = nullptr;           // 50 Hz tick ??
 
 
-int ldr(int);
-int ultrasonic(int, int);
-void ultrasonic_ldr_isr();
-void ultrasonic_init();
-void ldr_init();
-void tilt_init();
-void timer0_init();
-void sensors_loop();
+
 
 
 // this is edge triggered and will not use many arduino functions
@@ -241,10 +234,10 @@ void tilt_init(){
   // attachInterrupt(digitalPinToInterrupt(TILT_PIN_L), tilt_isr, (RISING | FALLING) ); // not sure this will work
   
   gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
-  gpio_isr_handler_add(TILT_PIN_B, tilt_isr, (void*) TILT_PIN_F);
-  gpio_isr_handler_add(TILT_PIN_B, tilt_isr, (void*) TILT_PIN_B);
-  gpio_isr_handler_add(TILT_PIN_B, tilt_isr, (void*) TILT_PIN_R);
-  gpio_isr_handler_add(TILT_PIN_B, tilt_isr, (void*) TILT_PIN_L);
+  gpio_isr_handler_add(gpio_num_t(TILT_PIN_F), tilt_isr, (void*) TILT_PIN_F);
+  gpio_isr_handler_add(gpio_num_t(TILT_PIN_B), tilt_isr, (void*) TILT_PIN_B);
+  gpio_isr_handler_add(gpio_num_t(TILT_PIN_R), tilt_isr, (void*) TILT_PIN_R);
+  gpio_isr_handler_add(gpio_num_t(TILT_PIN_L), tilt_isr, (void*) TILT_PIN_L);
 
 }
 
